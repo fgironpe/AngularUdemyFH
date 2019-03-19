@@ -9,7 +9,17 @@ export class InfoPaginaService {
   info: InfoPagina = {};
   cargada = false;
 
+  equipo: any[] = [];
+
   constructor(private http: HttpClient) {
+
+    this.cargarInfo();
+    this.cargarEquipo();
+
+  }
+
+  private cargarInfo() {
+
     // Leer el archivo JSON
     this.http.get('assets/data/data-pagina.json')
       .subscribe((resp: InfoPagina) => {
@@ -17,7 +27,24 @@ export class InfoPaginaService {
       this.cargada = true;
       this.info = resp;
 
-      console.log(resp.email);
     });
+
   }
+
+  private cargarEquipo() {
+
+    // Leer el archivo JSON (ruta de firebase)
+    this.http.get('https://angular-fhudemy.firebaseio.com/equipo.json')
+      .subscribe((resp: any[]) => {
+
+      this.equipo = resp;
+
+      //console.log(resp);
+
+    });
+
+
+  }
+
+
 }
