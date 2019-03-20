@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { InfoPagina } from '../interfaces/info-pagina.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -38,8 +39,6 @@ export class InfoPaginaService {
       .subscribe((resp: any[]) => {
 
       this.equipo = resp;
-
-      //console.log(resp);
 
     });
 
